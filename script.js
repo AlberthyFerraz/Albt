@@ -2,14 +2,15 @@ function openPopup() {
     window.open('popup.html', 'Popup', 'width=400, height=500');
 }
 
-function calcularNotas() {
-    const nota1 = parseFloat(document.getElementById('nota1').value) || 0;
-    const nota2 = parseFloat(document.getElementById('nota2').value) || 0;
-    const nota3 = parseFloat(document.getElementById('nota3').value) || 0;
+function calcularRisco() {
+    const idade = parseFloat(document.getElementById('idade').value);
+    const sexo = document.getElementById('sexo').value;
+    const pressaoArterial = parseFloat(document.getElementById('pressao').value);
+    const colesterolTotal = parseFloat(document.getElementById('colesterol').value);
+    const imc = parseFloat(document.getElementById('imc').value);
+    const fumante = document.getElementById('fumante').checked;
+
+    const resultado = calculadoraRiscoCardiovascular(idade, sexo, pressaoArterial, colesterolTotal, imc, fumante);
     
-    const soma = nota1 + nota2 + nota3;
-    const media = soma / 3;
-    
-    const resultadoDiv = document.getElementById('resultado');
-    resultadoDiv.innerHTML = `Soma: ${soma}<br>Média: ${media.toFixed(2)}`;
-}    
+    document.getElementById('resultado').innerText = resultado;
+}

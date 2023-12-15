@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="styles.css">
-	<title>Notas do Aluno</title>
-</head>
-<body>
-	<h1>Primeira Interação no JavaScript</h1>
-	<button onclick="openPopup()">Iniciar</button>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcualdora</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function openPopup() {
+            window.open('popup.html', 'Popup', 'width=400,height=400');
+        }
+    </script>
 
-	<script src="script.js"></script>
+
+</head>
+<body class="Tela">
+	<header>
+        <h1 ><span>Risco Cardiovascular</span></h1>
+        <nav>
+            <ul aria-label="Navegação primária" class="navegacao-primaria">
+                <li><a href="https://www.if23.pensandocomrobotica.com.br/alberthy/" >Curriculo</a></li>
+            </ul>
+            <i class="fa-solid fa-bars"></i>
+        </nav>
+    <h2 class="TextS">Para calcular o risco cardiovascular, você deve antes verificar certos aspectos da sua saúde em uma consulta médica normal, em que o profissional colha uma amostra de sangue para testar níveis de algumas substâncias.</h2>
+	</header>
+    <button class="Button" onclick="openPopup()">Calcule aqui!</button>
+
 </body>
 </html>

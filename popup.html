@@ -2,27 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=400, height=500">
-    <link rel="stylesheet" href="styles.css">
-    <title>Popup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Risco Cardiovascular</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #resultado {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 
-    <h2>Informe as notas do aluno</h2>
+    <form id="formulario">
+        <label for="idade">Idade:</label>
+        <input type="number" id="idade" required>
 
-    <label for="nota1">Nota 1:</label>
-    <input type="number" id="nota1" placeholder="Digite a nota 1">
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" required>
+            <option value="masculino">Masculino</option>
+            <option value="feminino">Feminino</option>
+        </select>
 
-    <label for="nota2">Nota 2:</label>
-    <input type="number" id="nota2" placeholder="Digite a nota 2">
+        <label for="pressao">Pressão Arterial:</label>
+        <input type="number" id="pressao" required>
 
-    <label for="nota3">Nota 3:</label>
-    <input type="number" id="nota3" placeholder="Digite a nota 3">
+        <label for="colesterol">Colesterol Total:</label>
+        <input type="number" id="colesterol" required>
 
-    <button onclick="calcularNotas()">Calcular</button>
+        <label for="imc">IMC:</label>
+        <input type="number" id="imc" step="0.1" required>
+
+        <label for="fumante">Fumante:</label>
+        <input type="checkbox" id="fumante">
+
+        <button type="button" onclick="calcularRisco()">Calcular Risco</button>
+    </form>
 
     <div id="resultado"></div>
 
-    <script src="script.js"></script>
+    <script>
+        function calculadoraRiscoCardiovascular(idade, sexo, pressaoArterial, colesterolTotal, imc, fumante) {
+            // Adicione a lógica da calculadora aqui (como no exemplo JavaScript anterior)
+            const coefIdade = 0.05;
+            const coefSexo = (sexo === 'masculino') ? 0.5 : 0.3;
+            const coefPressaoArterial = 0.02;
+            const coefColesterol = 0.03;
+            const coefImc = 0.1;
+            const coefFumante = 0.7;
+
+            const pontuacao = (
+                idade * coefIdade +
+                coefSexo +
+                pressaoArterial * coefPressaoArterial +
+                colesterolTotal * coefColesterol +
+                imc * coefImc +
+                (fumante ? coefFumante : 0)
+            );
+
+            // Valor de corte fictício, ajuste conforme necessário
+            const valorCorte = 5;
+
+            // Avaliação do risco
+            if (pontuacao >= valorCorte) {
+                return "Alto risco cardiovascular";
+            } else {
+                return "Baixo risco cardiovascular";
+            }
+        }
+
+        function calcularRisco() {
+            const idade = parseFloat(document.getElementById('idade').value);
+            const sexo = document.getElementById('sexo').value;
+            const pressaoArterial = parseFloat(document.getElementById('pressao').value);
+            const colesterolTotal = parseFloat(document.getElementById('colesterol').value);
+            const imc = parseFloat(document.getElementById('imc').value);
+            const fumante = document.getElementById('fumante').checked;
+
+            const resultado = calculadoraRiscoCardiovascular(idade, sexo, pressaoArterial, colesterolTotal, imc, fumante);
+            
+            document.getElementById('resultado').innerText = resultado;
+        }
+    </script>
+
 </body>
 </html>
